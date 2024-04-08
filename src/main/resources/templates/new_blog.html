@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link rel="stylesheet"
+ 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+ 			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+ 			crossorigin="anonymous">
+ 		<style>
+				 body{
+					 background-image: url("/3.jpg");
+					 color: beige;
+				 }
+				 textarea{
+					 background-color: rgb(79, 79, 79);
+					 color: antiquewhite;
+				 }
+				 #t1,#t2{
+					 background-color: rgb(79, 79, 79);
+					 color: antiquewhite;
+				 }
+		</style>		 
+	</head>
+	<body style="margin: 20px;">
+		<h1 style="color: rgb(68, 68, 68);text-align: center;">Give Details</h1><br>
+		<form action="#" th:action="@{/saveBlog}" th:object="${blog}" method="POST">
+            <textarea id="t1" input type="text" th:field="*{heading}" placeholder="Blog Heading" class="form-control mb-4 col-4" required></textarea>
+			
+            <textarea id="story" rows="9" cols="155" input type="text"  th:field="*{story}" placeholder="Blog Story" required></textarea><br>
+			<br><textarea id="t2" cols="1" input type="text" th:field="*{userName}" placeholder=" User Name" class="form-control mb-4 col-4" required></textarea>
+			
+            <button type="submit" class="btn btn-info col-2"> Save Blog</button>
+        </form>
+	</body>
+</html>
