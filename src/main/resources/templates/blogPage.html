@@ -6,7 +6,7 @@
  			crossorigin="anonymous"> -->
  			<style>
 				 body{
-					 background-image: url("/1.jpg");
+					 background-image: url("/8.jpg");
 					 background-repeat:no-repeat;
 					 background-size: 100%;
 					 padding: 20px;
@@ -42,30 +42,68 @@
 				 .button-4:hover{
 					 background-color:rgb(40, 30, 98);
 				 }
-			 </style>
+				 a:link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+p{
+	font-size: large;
+}
+
+	 </style>
 	</head>
 	<body style="margin-left:20px;">
-		<p><a href="/">
-			<button class="btn btn-primary" role="button">Home</button>
-		</a></p>
-	<body1>
-
-		<h1 th:text="${blog.heading}" style="padding-left: 10%; padding-right: 10%; text-align: center;font-size: xx-large;" ></h1>
-		<h2 th:text="${blog.story}" style="font-size: medium;color: rgb(255, 255, 255);"></h2>
-		<h2 th:text="${blog.time}" style="font-size: x-small;text-align: right;color:rgb(214, 207, 208)"></h2>
 		
-		<p style="text-align: right;align-content: end;">
-		<h3 style="font-size:15px">Post written by - </h3>
+		<h2><a href="/logout">logout</a>&nbsp;&nbsp;<a href="/">allBlogs</a>&nbsp;
+		<a href="/getBlog">yourBlogs</a></h2>
+	<body1>
+		
+		<h1 th:text="${blog.heading}" style="padding-left: 10%; padding-right: 10%; text-align: center;font-size: xx-large;" ></h1>
+		<hr style="font-size: small;text-align:left;top: 20px;
+            border: none;
+            height: 12px;
+            background: black;
+            margin-bottom: 50px;;width: 100%; ">
+		
+		<h2 th:text="${blog.time}" style="font-size: 20px;color:rgb(255, 255, 255)"></h2>
+		<hr style="text-align:center;margin-left:0;width: 80%;">
+		<h2 th:text="${blog.story}" style="font-size: medium;color: rgb(255, 255, 255);"></h2>
+		
+		<p style="">
+		
 		<b>
-		<h3 th:text="${blog.userName}" style="font-size:19px;color: rgb(253, 0, 45);"></h3>
+		<div style="text-align: left;">
+		<h3 th:text="${blog.user.name}" style="font-size:25px;color: rgb(0, 0, 0);">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+		</div>
 		</b>
 		</p>
 		<br>
 		
 		<h2 style="font-size: small">Comments <b></b></h2> 
-		<tr th:each="comment : ${blog.comments}" style="padding: 0;font-size: xx-small;">
-     	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><x style=" text-align:right;color: rgb(179, 255, 255);"><td th:text="${comment.statement}"></td></b>
-     	<b><y style="text-align:right; float: right ;"><td th:text="${comment.time}" style="font-size: xx-small;"></td></y></b></x>
+		&nbsp;&nbsp;<tr th:each="comment : ${blog.comments}" style="padding: 0;font-size: xx-small;">
+     	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><x style=" text-align:right;color: rgb(255, 255, 255);"><td th:text="${comment.statement}"></td></b>
+     	<!--<b><y style="text-align:right; float: right ;"><td th:text="${comment.time}" style="font-size: xx-small;"></td></y></b>-->
+     	</x>
      	
      	
      	<br>

@@ -11,28 +11,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.akash.blogApp.entity.Blogs;
 import com.akash.blogApp.entity.Comments;
+import com.akash.blogApp.repository.BlogRepository;
 import com.akash.blogApp.service.ServiceClass;
 
 @Controller
 public class ControllerClass {
 	@Autowired
 	ServiceClass service;
+	@Autowired
+	BlogRepository blogRepo;
+	
 	@GetMapping("/")
+	public String allBlogs(Model model) {
+		model.addAttribute("listBlogs",blogRepo.findAll());
+		return "allBlog";
+	}
+	
+	@GetMapping("/getBlog")
 	public String getAllBlogs(Model model) {
 		return service.getAllBlogs(model);
-		
 	}
 	@GetMapping("/showNewBlogForm")
 	 public String showNewBlogForm(Model model) {
 	     // create model attribute to bind form data
 		return service.showNewBlogForm(model);
-	     
 	 }
 	@PostMapping("/saveBlog")
 	public String saveBlogs(@ModelAttribute("blog") Blogs blog) {
 		return service.saveBlogs(blog);
-		
-		
 	}
 	@PostMapping("/saveComment/{id}")
 	public String addComment(@PathVariable int id ,@ModelAttribute("comment") Comments comment, Model model) {
@@ -40,12 +46,6 @@ public class ControllerClass {
 		
 		
 	}
-//	@PostMapping("/addBlogs/{uid}")
-//	public Blogs addBlogs(@RequestBody Blogs blogs ,@PathVariable Integer uid) {
-//		blogs.setUsers(userRepo.findById(uid).get());
-//		return blogRepo.save(blogs);
-//	}
-	
 	
 	@GetMapping("/deleteBlog/{bid}")
 	public String deleteBlogs(@PathVariable int bid) {
@@ -53,7 +53,7 @@ public class ControllerClass {
 		
 		
 	}
-	@GetMapping("/showBlog/{id}")
+	@GetMapping("showBlog/{id}")
 	public String showBlog( @PathVariable int id, Model model) {
 		return service.showBlog(id,model);
 	}

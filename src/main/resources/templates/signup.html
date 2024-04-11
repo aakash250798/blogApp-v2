@@ -1,0 +1,76 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		
+ 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	
+		<style>
+			
+			
+			.heading{
+				margin-top:50px;
+				
+			}
+			.container{
+				background-color: darkgrey;
+				
+				text-align: center;
+				margin-top: 50px;
+				margin-bottom:50px;
+				padding-top: 20px;
+				padding-bottom:20px;
+				padding-left:10px;
+				padding-right: 10px;
+			}
+			body{
+				background-image:url("/2.jpg");
+				padding-left:400px;
+				padding-right: 400px;
+				padding-top:20px;
+				padding-bottom:20px;
+			}
+		</style>
+	
+	</head>
+	
+	<body>
+		<div th:if="${param.success}">
+			<div class="alert alert-info">
+				You have registered successfully 
+			</div>
+		</div> 
+		<div th:if="${param.failure}">
+			<div class="alert alert-info" style="background-color: rgb(250, 77, 67);">
+				Error creating user 
+			</div>
+		</div> 
+		<div class="container" style="margin: 80 px;">
+			<div class="heading">
+				<h2>Register/SignUp</h2>
+			</div>
+			<br>
+			
+			
+			<form method="post" role="form" th:action="@{/register/save}" th:object="${user}" >
+				<!--<label>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
+				<input class="form-control" placeholder="name" type="text" th:field="*{name}"/>
+				<p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}">Invalid Email</p>
+				<br>
+				 <input class="form-control" placeholder="email" type="email" th:field="*{email}"/>
+				<!--<p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>-->
+				<p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}">
+  Invalid Email</p>
+				<br>
+				<input class="form-control" placeholder="password" type="password" th:field="*{password}"/>
+				<p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>
+				<br>
+				<button type="submit" class="btn btn-primary">Register</button>
+				<span>Already regsitered
+					<a th:href="@{/login}">Login here</a>
+				</span>
+				
+			</form>
+			
+		</div>
+		
+    </body>

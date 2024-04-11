@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 
 import com.akash.blogApp.entity.Blogs;
 import com.akash.blogApp.entity.Comments;
+import com.akash.blogApp.entity.User;
 import com.akash.blogApp.repository.BlogRepository;
 import com.akash.blogApp.repository.CommentRepository;
+import com.akash.blogApp.repository.UserRepository;
+import com.akash.blogApp.util.SecurityUtils;
 
 @Service
 public class ServiceClass {
@@ -19,6 +22,9 @@ public class ServiceClass {
 	BlogRepository blogRepo;
 	@Autowired
 	CommentRepository commentRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 	public String showBlog(int id, Model model) {
 		model.addAttribute("blog",blogRepo.findById(id).get());
 		return "blogPage";
@@ -27,16 +33,16 @@ public class ServiceClass {
 	}
 	public String deleteBlogs(int bid) {
 		blogRepo.deleteById(bid);
-		return "redirect:/";
+		return "redirect:/getBlog";
 	}
 	public String addComment(int id, Comments comment, Model model) {
 		Blogs blog=blogRepo.findById(id).get();
 		comment.setId(blog.getComments().size()+1);
 		LocalDateTime time =LocalDateTime.now();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd MMM, HH:mm a");
-		String format="["+time.format(myFormatObj)+"]";
+		String format=" "+time.format(myFormatObj)+" ";
 		
-		
+		comment.setId(blog.getComments().size()+1);
 		comment.setTime(format);
 		Comments c1=commentRepo.save(comment);
 		System.out.println(c1);
@@ -50,12 +56,18 @@ public class ServiceClass {
 		return "blogPage";
 	}
 	public String saveBlogs(Blogs blog) {
+		String email=SecurityUtils.getCurrentUser().getUsername();
+		User user=userRepo.findByEmail(email);
+		if(user.getEmail()==null)
+			System.out.println("hello world");
 		LocalDateTime time =LocalDateTime.now();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd MMM, HH:mm a");
-		String format="["+time.format(myFormatObj)+"]";
+		String format=" "+time.format(myFormatObj)+" ";
+		
+		blog.setUser(user);
 		blog.setTime(format);
 		blogRepo.save(blog);
-		return "redirect:/";
+		return "redirect:/getBlog";
 	}
 	public String showNewBlogForm(Model model) {
 		Blogs blog = new Blogs();
@@ -63,7 +75,10 @@ public class ServiceClass {
 	    return "new_blog";
 	}
 	public String getAllBlogs(Model model) {
-		model.addAttribute("listBlogs",blogRepo.findAll());
-		return "getBlogs";
+		String email=SecurityUtils.getCurrentUser().getUsername();
+		User user=userRepo.findByEmail(email);
+		
+		model.addAttribute("listBlogs",blogRepo.findAllBlogs(user.getId()));
+		return "getBlog";
 	}
 }
