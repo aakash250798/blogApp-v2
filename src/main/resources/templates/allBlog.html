@@ -46,8 +46,10 @@ a:active {
 		</style>
 	</head>
 	<body style="margin: 20px;">
-		<h2><a href="/logout">logout</a>&nbsp;&nbsp; <a href="/">allBlogs</a>&nbsp;&nbsp; 
-		<a href="/getBlog">yourBlogs</a></h2>
+		<h2><a href="/logout">login/logout</a>&nbsp;&nbsp; <a href="/">allBlogs</a>&nbsp;&nbsp; 
+		<a href="/getBlog">yourBlogs</a>
+		<a th:href="@{/showNewBlogForm}" class="btn btn-primary ">Add New Blogs</a>
+		</h2>
 		
 		<h1 style="text-align: center;color:rgb(64, 0, 0);">Blogs List</h1> 
   		<table border="1" class = "table table-striped table-responsive-md" >
