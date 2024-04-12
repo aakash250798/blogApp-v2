@@ -43,7 +43,6 @@ public class WebSpringSecurity {
      
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests((authorize)->authorize
-						.requestMatchers("/images/**").permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/showBlog/**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/getBlog"))
