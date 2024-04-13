@@ -7,24 +7,35 @@
 			
 			.heading{
 				margin-top:50px;
+				color: white;
 				
 			}
 			.container{
-				background-color: darkgrey;
+				background-color: rgb(79, 79, 79);
 				text-align: center;
 				margin-top: 50px;
 				margin-bottom:50px;
 				padding-top: 20px;
 				padding-bottom:20px;
-				
 			}
 			body{
-				
+				background-image: url("https://images.hdqwalls.com/download/simple-minimal-mountains-landscape-4k-rc-1920x1080.jpg");
+				background-size: cover; 
 				padding-left:400px;
 				padding-right: 400px;
 				padding-top:20px;
 				padding-bottom:20px;
 			}
+			.form-control{
+					 background-color: rgb(79, 79, 79);
+					 color: antiquewhite;
+					 border-color: white;
+				 }
+				 .form-control:focus, input:focus{
+					 background-color: rgb(79, 79, 79);
+    				outline: none;
+    				color: white;
+				}
 		</style>
 	
 	</head>
@@ -40,9 +51,9 @@
 		<form method="post" th:action="@{/login}" class="form-horizontal" role="form">
 			<!--<label>&nbsp;&nbsp;&nbsp;Email</label>-->
 			<input  type="text" id="username" name="username" class="form-control" placeholder="Enter email"  /><br>
-			<input type="password" id="password" name="password" class="form-control" placeholder="Enter password"/>
-			<br><button type="submit" class="btn btn-primary">Submit</button>
-			<span>&nbsp;&nbsp;Not Registered?
+			<input  type="password" id="password" name="password" class="form-control" placeholder="Enter password"/>
+			<br><button type="submit" class="btn btn-primary">Submit</button><br><br>
+			<span>Not Registered?
 				<a th:href="@{signup}">Register/Signup here</a>
 			</span>
 		</form>
