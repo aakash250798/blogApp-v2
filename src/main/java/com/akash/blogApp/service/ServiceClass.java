@@ -25,7 +25,7 @@ public class ServiceClass {
 	
 	@Autowired
 	UserRepository userRepo;
-	public String showBlog(int id, Model model) {
+	public static String showBlog(int id, Model model) {
 		model.addAttribute("blog",blogRepo.findById(id).get());
 		return "blogPage";
 		// TODO Auto-generated method stub
@@ -35,7 +35,7 @@ public class ServiceClass {
 		blogRepo.deleteById(bid);
 		return "redirect:/";
 	}
-	public String addComment(int id, Comments comment, Model model) {
+	public void addComment(int id, Comments comment, Model model) {
 		Blogs blog=blogRepo.findById(id).get();
 				
 		comment.setId(blog.getComments().size()+5+(int)commentRepo.count());
@@ -47,7 +47,8 @@ public class ServiceClass {
 		blogRepo.save(blog);
 		
 		model.addAttribute("blog",blog);
-		return "redirect:/blogPage";
+		ServiceClass.showBlog(id,model);
+		
 	}
 	public String saveBlogs(Blogs blog) {
 		String email=SecurityUtils.getCurrentUser().getUsername();
