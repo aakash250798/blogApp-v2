@@ -9,10 +9,10 @@
 			
 			.heading{
 				margin-top:50px;
-				
+				color: white;
 			}
 			.container{
-				background-color: darkgrey;
+				background-color:rgb(79, 79, 79);
 				
 				text-align: center;
 				margin-top: 50px;
@@ -23,12 +23,23 @@
 				padding-right: 10px;
 			}
 			body{
-				
+				background-image: url("https://free4kwallpapers.com/uploads/originals/2020/01/23/digital-art-k-wallpaper.jpg");
+				background-size: cover; 
 				padding-left:400px;
 				padding-right: 400px;
 				padding-top:20px;
 				padding-bottom:20px;
 			}
+			.form-control{
+					 background-color: rgb(79, 79, 79);
+					 color: antiquewhite;
+					 border-color: white;
+				 }
+				 .form-control:focus, input:focus{
+					 background-color: rgb(79, 79, 79);
+    				outline: none;
+    				color: white;
+				}
 		</style>
 	
 	</head>
@@ -64,7 +75,7 @@
 				<input class="form-control" placeholder="password" type="password" th:field="*{password}"/>
 				<p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>
 				<br>
-				<button type="submit" class="btn btn-primary">Register</button>
+				<button type="submit" class="btn btn-primary">Register</button><br><br>
 				<span>Already regsitered
 					<a th:href="@{/login}">Login here</a>
 				</span>
