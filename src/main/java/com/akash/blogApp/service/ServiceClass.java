@@ -25,7 +25,7 @@ public class ServiceClass {
 	
 	@Autowired
 	UserRepository userRepo;
-	public static String showBlog(int id, Model model) {
+	public  String showBlog(int id, Model model) {
 		model.addAttribute("blog",blogRepo.findById(id).get());
 		return "blogPage";
 		// TODO Auto-generated method stub
@@ -47,7 +47,7 @@ public class ServiceClass {
 		blogRepo.save(blog);
 		
 		model.addAttribute("blog",blog);
-		return ServiceClass.showBlog(id,model);
+		return "redirect:/";
 		
 	}
 	public String saveBlogs(Blogs blog) {
