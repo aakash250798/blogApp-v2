@@ -35,7 +35,7 @@ public class ServiceClass {
 		blogRepo.deleteById(bid);
 		return "redirect:/";
 	}
-	public void addComment(int id, Comments comment, Model model) {
+	public String addComment(int id, Comments comment, Model model) {
 		Blogs blog=blogRepo.findById(id).get();
 				
 		comment.setId(blog.getComments().size()+5+(int)commentRepo.count());
