@@ -47,7 +47,7 @@ public class ServiceClass {
 		blogRepo.save(blog);
 		
 		model.addAttribute("blog",blog);
-		ServiceClass.showBlog(id,model);
+		return ServiceClass.showBlog(id,model);
 		
 	}
 	public String saveBlogs(Blogs blog) {
