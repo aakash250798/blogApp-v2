@@ -42,10 +42,8 @@ public class ServiceClass {
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd MMM, HH:mm a");
 		String format=" "+time.format(myFormatObj)+" ";
 		
-		comment.setId(blog.getComments().size()+1);
 		comment.setTime(format);
 		Comments c1=commentRepo.save(comment);
-		System.out.println(c1);
 		List<Comments>l=blog.getComments();
 		l.add(c1);
 		blog.setComments(l);
