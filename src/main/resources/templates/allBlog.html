@@ -1,12 +1,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<link rel="stylesheet"
- 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
- 			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
- 			crossorigin="anonymous">  
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
  		<style>
 			body{
-					 background-color:rgb(255, 91, 91);
+					 background-image: url("https://picstatio.com/large/3eb697/simple-curves-abstract-4k.jpg");
+					 background-size: cover; 
 					 color: beige;
 				 }
 				 .btn.btn-primary{
@@ -32,7 +33,7 @@ a:visited {
 }
 
 a:hover {
-  color: red;
+  
   background-color: transparent;
   text-decoration: underline;
 }
@@ -42,22 +43,49 @@ a:active {
   background-color: transparent;
   text-decoration: underline;
 }
+a { 
+    text-decoration: none; 
+}
+a:hover{
+	text-decoration: none; 
+}
+.button{
+	padding: 0; border: none; background: none;
+}
+
+
+table {
+border: none;
+border-collapse: collapse; border: none;
+}
+
+td{
+	border: none;
+}
+th{
+	background-color: forestgreen;
+	border:none;
+}
 
 		</style>
 	</head>
 	<body style="margin: 20px;">
-		<h2><a href="/logout">login/logout</a>&nbsp;&nbsp; <a href="/">allBlogs</a>&nbsp;&nbsp; 
-		<a href="/getBlog">yourBlogs</a>
-		<a th:href="@{/showNewBlogForm}" class="btn btn-primary ">Add New Blogs</a>
-		</h2>
+		<!--<h2><a href="/logout">logout</a>&nbsp;&nbsp; <a href="/">allBlogs</a>&nbsp;&nbsp; 
+		<a href="/getBlog">yourBlogs</a></h2>-->
+		<button type="button" class="btn btn-outline-success"><a href="/logout">Logout</a></button>
+		<button type="button" class="btn btn-outline-success"><a href="/">All Blogs</a></button>
 		
-		<h1 style="text-align: center;color:rgb(64, 0, 0);">Blogs List</h1> 
-  		<table border="1" class = "table table-striped table-responsive-md" >
+		<button type="button" class="btn btn-outline-success"><a href="/getBlog">Your Blogs</a></button>
+		<button type="button" class="btn btn-outline-success"><a href="/showNewBlogForm">Add Blog</a></button>
+		
+		<h1 style="text-align: center;color:rgb(255, 255, 255);">Blogs List</h1> 
+  		<table class = "table table-striped table-hover table-responsive-md" >
    			<thread>
 	   			<tr>
      			<th>Blog </th>
      			<th>View</th>
      			<th>Author</th>
+     			<th>Date</th>
     			</tr>
    			<tbody>
     		<tr th:each="blog : ${listBlogs}" >
@@ -66,12 +94,16 @@ a:active {
     <td><a th:href="@{/showBlog/{id}(id=${blog.id})}" class="btn btn-primary">Show Blog</a></td>
     
     <h1> <td th:text="${blog.user.name}"></td></h1>
+    <td th:text="${blog.time}"></td>
+    
     </div>
     </tr>
    </tbody>
    </thread>
   </table>
   <br>
+  <a th:href="@{/showNewBlogForm}" class="btn btn-primary ">Add New Blogs</a>
+	
   	
 	</body>
 </html>
