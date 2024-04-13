@@ -37,12 +37,9 @@ public class ServiceClass {
 	}
 	public String addComment(int id, Comments comment, Model model) {
 		Blogs blog=blogRepo.findById(id).get();
+				
 		comment.setId(blog.getComments().size()+1);
-		LocalDateTime time =LocalDateTime.now();
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd MMM, HH:mm a");
-		String format=" "+time.format(myFormatObj)+" ";
 		
-		comment.setTime(format);
 		Comments c1=commentRepo.save(comment);
 		List<Comments>l=blog.getComments();
 		l.add(c1);
@@ -50,8 +47,7 @@ public class ServiceClass {
 		blogRepo.save(blog);
 		
 		model.addAttribute("blog",blog);
-		//model.addAttribute("comments",comment);
-		return "blogPage";
+		return "redirect:/blogPage";
 	}
 	public String saveBlogs(Blogs blog) {
 		String email=SecurityUtils.getCurrentUser().getUsername();
