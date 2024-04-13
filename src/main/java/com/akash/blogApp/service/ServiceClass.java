@@ -38,7 +38,7 @@ public class ServiceClass {
 	public String addComment(int id, Comments comment, Model model) {
 		Blogs blog=blogRepo.findById(id).get();
 				
-		comment.setId(blog.getComments().size()+3);
+		comment.setId(blog.getComments().size()+5+(int)commentRepo.count());
 		
 		Comments c1=commentRepo.save(comment);
 		List<Comments>l=blog.getComments();
