@@ -33,7 +33,7 @@ public class ServiceClass {
 	}
 	public String deleteBlogs(int bid) {
 		blogRepo.deleteById(bid);
-		return "redirect:/getBlog";
+		return "redirect:/";
 	}
 	public String addComment(int id, Comments comment, Model model) {
 		Blogs blog=blogRepo.findById(id).get();
