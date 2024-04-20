@@ -32,7 +32,9 @@ Also create a database and set the url for the database in properties file
 Start the server
 
 ```bash
-  right click on the project name and select run as -> SpringBootApp and wait for the server to Start
+  mvn install
+  and then find the jar file from the target folder and run that har as java -jar [jar name]
+  --------------------------------------------------------------------------------------
   check the port and open localhost:port in ur browser
   Now you have options like create/view/delete blogs after you signup/login to the application
 ```
