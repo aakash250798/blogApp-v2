@@ -1,5 +1,6 @@
 
-## Run Locally
+## Blog Application 
+
 
 Clone the project
 
